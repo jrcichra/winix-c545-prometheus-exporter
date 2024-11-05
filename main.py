@@ -155,6 +155,12 @@ if __name__ == "__main__":
                 alias=device.alias,
                 location_code=device.location_code,
             ).set(state["filter_hour"])
+            air_quality_metric.labels(
+                id=device.id,
+                mac=device.mac,
+                alias=device.alias,
+                location_code=device.location_code,
+            ).set(air_quality_table.get(state["air_quality"], ERROR_PARSING_VALUE))
             air_qvalue_metric.labels(
                 id=device.id,
                 mac=device.mac,
