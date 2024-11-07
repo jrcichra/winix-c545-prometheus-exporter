@@ -124,55 +124,75 @@ if __name__ == "__main__":
                 mac=device.mac,
                 alias=device.alias,
                 location_code=device.location_code,
-            ).set(power_table.get(state["power"], ERROR_PARSING_VALUE))
+            ).set(
+                power_table.get(
+                    state.get("power", ERROR_PARSING_VALUE), ERROR_PARSING_VALUE
+                )
+            )
             mode_metric.labels(
                 id=device.id,
                 mac=device.mac,
                 alias=device.alias,
                 location_code=device.location_code,
-            ).set(mode_table.get(state["mode"], ERROR_PARSING_VALUE))
+            ).set(
+                mode_table.get(
+                    state.get("mode", ERROR_PARSING_VALUE), ERROR_PARSING_VALUE
+                )
+            )
             airflow_metric.labels(
                 id=device.id,
                 mac=device.mac,
                 alias=device.alias,
                 location_code=device.location_code,
-            ).set(airflow_table.get(state["airflow"], ERROR_PARSING_VALUE))
+            ).set(
+                airflow_table.get(
+                    state.get("airflow", ERROR_PARSING_VALUE), ERROR_PARSING_VALUE
+                )
+            )
             aqi_metric.labels(
                 id=device.id,
                 mac=device.mac,
                 alias=device.alias,
                 location_code=device.location_code,
-            ).set(state["aqi"])
+            ).set(state.get("aqi"), ERROR_PARSING_VALUE)
             plasmawave_metric.labels(
                 id=device.id,
                 mac=device.mac,
                 alias=device.alias,
                 location_code=device.location_code,
-            ).set(plasmawave_table.get(state["plasma"], ERROR_PARSING_VALUE))
+            ).set(
+                plasmawave_table.get(
+                    state.get("plasma", ERROR_PARSING_VALUE), ERROR_PARSING_VALUE
+                )
+            )
             filter_hour_metric.labels(
                 id=device.id,
                 mac=device.mac,
                 alias=device.alias,
                 location_code=device.location_code,
-            ).set(state["filter_hour"])
+            ).set(state.get("filter_hour", ERROR_PARSING_VALUE))
             air_quality_metric.labels(
                 id=device.id,
                 mac=device.mac,
                 alias=device.alias,
                 location_code=device.location_code,
-            ).set(air_quality_table.get(state["air_quality"], ERROR_PARSING_VALUE))
+            ).set(
+                air_quality_table.get(
+                    state.get("air_quality", ERROR_PARSING_VALUE), ERROR_PARSING_VALUE
+                )
+            )
             air_qvalue_metric.labels(
                 id=device.id,
                 mac=device.mac,
                 alias=device.alias,
                 location_code=device.location_code,
-            ).set(state["air_qvalue"])
+            ).set(state.get("air_qvalue", ERROR_PARSING_VALUE))
             ambient_light_metric.labels(
                 id=device.id,
                 mac=device.mac,
                 alias=device.alias,
                 location_code=device.location_code,
-            ).set(state["ambient_light"])
+            ).set(state.get("ambient_light", ERROR_PARSING_VALUE))
             # print out for every scrape
             print(datetime.now())
             for f, v in state.items():
