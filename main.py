@@ -154,7 +154,7 @@ if __name__ == "__main__":
                 mac=device.mac,
                 alias=device.alias,
                 location_code=device.location_code,
-            ).set(state.get("aqi"), ERROR_PARSING_VALUE)
+            ).set(state.get("aqi", ERROR_PARSING_VALUE))
             plasmawave_metric.labels(
                 id=device.id,
                 mac=device.mac,
