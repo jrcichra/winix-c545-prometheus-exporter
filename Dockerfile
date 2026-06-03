@@ -1,4 +1,4 @@
-FROM python:3.14.4-bookworm
+FROM python:3.14.5-bookworm
 WORKDIR /app
 RUN apt-get update && apt-get install -y locales && rm -rf /var/cache/apt/archives /var/lib/apt/lists/*
 RUN sed -i -e 's/# en_US.UTF-8 UTF-8/en_US.UTF-8 UTF-8/'        /etc/locale.gen \
